@@ -1,0 +1,15 @@
+{
+    "name": "rum/front",
+    "description": "Front",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "home",
+        "rum"
+    ],
+    "require": {
+        "php": ">=5.5",
+       	"envms/fluentpdo": "1.1.*",
+        "daylerees/sanitizer": "dev-master"
+    }
+}
+

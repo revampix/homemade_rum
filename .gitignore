@@ -1,1 +1,5 @@
 .idea
+vendor
+front/vendor
+front/composer.lock
+front/composer.phar
