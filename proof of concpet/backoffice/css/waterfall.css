@@ -219,6 +219,8 @@
     margin-right: 10px;
 }
 
+#table-scroll table { width: 100%; }
+
 #table-scroll tr.even {
     background: #eee;
 }

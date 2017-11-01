@@ -67,9 +67,14 @@
 					</a>
 				</li>
                 <li class="dropdown">
-                    <a class="ajax-link" href="ajax/ui_icons.html">
+                    <a class="ajax-link" href="ajax/waterfalls.php">
                         <i class="fa fa-align-left"></i>
                         Waterfalls
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="ajax-link" href="ajax/ui_icons.html">
+                        Icons
                     </a>
                 </li>
 			</ul>
