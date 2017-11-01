@@ -61,9 +61,9 @@
 					</a>
 				</li>
 				<li class="dropdown">
-					<a class="ajax-link" href="ajax/charts_xcharts.html">
+					<a class="ajax-link" href="ajax/histograms.php">
 						<i class="fa fa-bar-chart-o"></i>
-                        Charts
+                        Histograms
 					</a>
 				</li>
                 <li class="dropdown">
@@ -93,6 +93,7 @@
 <script src="plugins/bootstrap/bootstrap.min.js"></script>
 <script src="plugins/perf-cascade/perf-cascade.min.js"></script>
 <script src="plugins/perf-cascade/perf-cascade-file-reader.min.js"></script>
+<script src="plugins/plotly/plotly.1.31.2.min.js"></script>
 <!-- All functions for this theme + document.ready processing -->
 <script src="js/devoops.js"></script>
 </body>
