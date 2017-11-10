@@ -52,12 +52,8 @@ LIMIT 20;');
         $res = DB::select('SELECT `navigation_timings`.`page_view_id`, `navigation_timings`.`nt_nav_st`, `navigation_timings`.`nt_first_paint`
 FROM `navigation_timings`
 INNER JOIN `resource_timings` ON `navigation_timings`.`page_view_id` = `resource_timings`.`page_view_id`
-GROUP BY `navigation_timings`.`guid`
+GROUP BY `navigation_timings`.`guid`, `navigation_timings`.`page_view_id`
 ORDER BY `navigation_timings`.`page_view_id` DESC;');
-
-        print '<pre>';
-        print_r($res);
-        die;
 
 
         $data = array(
@@ -68,5 +64,27 @@ ORDER BY `navigation_timings`.`page_view_id` DESC;');
         );
 
         return view('histograms', $data);
+    }
+
+    public function waterfalls()
+    {
+        //Move fetch from db to a model
+        $res = DB::select('SELECT `navigation_timings`.`page_view_id`, `navigation_timings`.`url`
+FROM `navigation_timings`
+INNER JOIN `resource_timings` ON `navigation_timings`.`page_view_id` = `resource_timings`.`page_view_id`
+GROUP BY `navigation_timings`.`page_view_id`
+ORDER BY `navigation_timings`.`page_view_id` DESC');
+
+        $out = array();
+        foreach ($res as $response)
+        {
+            $out[] = (array) $response;
+        }
+
+        $data = array(
+            'out' => $out
+        );
+
+        return view('waterfalls', $data);
     }
 }
