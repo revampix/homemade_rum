@@ -15,3 +15,4 @@ Route::get('/', 'HomeController@index');
 Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/histograms', 'HomeController@histograms');
 Route::get('/waterfalls', 'HomeController@waterfalls');
+Route::get('/waterfall-view/{pageViewId}', 'HomeController@waterfallView');

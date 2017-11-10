@@ -43,7 +43,7 @@
                                 <td><?php echo $i++; ?></td>
                                 <td>
                                     <a class="becon-link"
-                                       href="/src/waterfall/view.php?page_view_id=<?php echo $resTiming['page_view_id'] ?>"><?php echo $resTiming['url'] ?></a>
+                                       href="/waterfall-view/<?php echo $resTiming['page_view_id'] ?>"><?php echo $resTiming['url'] ?></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

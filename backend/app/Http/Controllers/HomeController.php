@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\PerfCascade;
 
 class HomeController extends Controller
 {
@@ -86,5 +87,27 @@ ORDER BY `navigation_timings`.`page_view_id` DESC');
         );
 
         return view('waterfalls', $data);
+    }
+
+    public function waterfallView($pageViewId)
+    {
+        $res = DB::select('SELECT * FROM `navigation_timings` where `page_view_id` = ' . $pageViewId);
+        $navigationTimings = (array) current($res);
+
+        $timingsResponse = DB::select('SELECT * FROM `resource_timings` where `page_view_id` = '  . $pageViewId);
+
+        $resourceTimings = array();
+        foreach ($timingsResponse as $response)
+        {
+            $resourceTimings[] = (array) $response;
+        }
+        $navigationTimings['restiming'] = $resourceTimings;
+
+
+        $perfCascade = new PerfCascade();
+
+
+        return response()->json($perfCascade->boomerangToPerfCascade($navigationTimings));
+
     }
 }
