@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 
-require_once __DIR__ . '/../src/simulation/dataFaker.php';
+require_once __DIR__ . '/../../src/simulation/dataFaker.php';
 
 $dataFaker = new HomemadeRum_Simulation_DataFaker();
 
@@ -47,11 +47,10 @@ $bounceRateGroupRangeVsPercentage = $dataFaker->generateBounceRate();
 $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
 
 ?>
-<!--Start Breadcrumb-->
 <div class="row">
     <div id="breadcrumb" class="col-xs-12">
         <ol class="breadcrumb pull-left">
-            <li><a href="#">Bounce Rate Vs. First Paint</a></li>
+            <li><a href="#">Conversion Rate Vs. First Paint</a></li>
         </ol>
         <div id="social" class="pull-right">
             <a target="_blank" href="https://github.com/revampix/homemade_rum"><i class="fa fa-github"></i></a>
@@ -62,7 +61,6 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         </div>
     </div>
 </div>
-<br />
 <div class="row">
     <div class="col-xs-12 col-sm-2"></div>
     <div class="col-xs-12 col-sm-8" style="text-align: center;">
@@ -98,11 +96,6 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
                     <input style="width: 80px" type="text" id="from_date" name="from" value="10/05/2017">
                     -
                     <input style="width: 80px" type="text" id="to_date" name="to" value="10/24/2017">
-                    <label><input type="checkbox" checked /> Compare with previous period</label>
-                    <br />
-                    <input style="width: 80px" type="text" id="to_date_prev" name="from" value="9/15/2017">
-                    -
-                    <input style="width: 80px" type="text" id="from_date_prev" name="to" value="10/4/2017">
                 </div>
             </fieldset>
         </div>
@@ -110,7 +103,7 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
             <fieldset>
                 <legend>GA Metrics</legend>
                 <div class="form-group">
-                    <label><input type="checkbox" checked /> Bounce Rate</label>
+                    <label><input type="checkbox" disabled /> Bounce Rate</label>
                     <br />
                     <label><input type="checkbox" checked /> Conversion Rate</label>
                     <br />
@@ -124,9 +117,7 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         } );
     </script>
 </div>
-<div id="timeToFirstPaintVsBounceRate"></div>
 <div id="timeToFirstPaintVsConversionRate"></div>
-<div id="timeToFirstPaintPrevVsNextPeriod"></div>
 <script>
 (function(){
     var x1 = <?php echo json_encode(array_keys($firstPaintArr)); ?>;
@@ -140,18 +131,6 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         marker : {
             color: 'rgb(31, 119, 180)'
         }
-    };
-
-    var bounceRate = {
-        x: <?php echo json_encode(array_keys($bounceRateGroupRangeVsPercentage)); ?>,
-        y: <?php echo json_encode(array_values($bounceRateGroupRangeVsPercentage)); ?>,
-        type: 'scatter',
-        name: 'Bounce Rate',
-        marker: {
-            color: 'rgb(255, 127, 14)'
-        },
-        xaxis: 'x2',
-        yaxis: 'y2'
     };
 
     var conversionRate = {
@@ -210,62 +189,8 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         }
     };
 
-    var dataFirstPaintVsBounceRate = [prevPeriod, bounceRate];
     var dataFirstPaintVsConversionRate = [prevPeriod, conversionRate];
 
-    Plotly.newPlot('timeToFirstPaintVsBounceRate', dataFirstPaintVsBounceRate, layout);
     Plotly.newPlot('timeToFirstPaintVsConversionRate', dataFirstPaintVsConversionRate, layout);
-})();
-</script>
-<script>
-(function(){
-    var x1 = <?php echo json_encode(array_keys($firstPaintArrPrevPeriod)); ?>;
-    var y1 = <?php echo json_encode(array_values($firstPaintArrPrevPeriod)); ?>;
-
-    var x2 = <?php echo json_encode(array_keys($firstPaintArr)); ?>;
-    var y2 = <?php echo json_encode(array_values($firstPaintArr)); ?>;
-
-    var prevPeriod = {
-        x: x1,
-        y: y1,
-        type: 'bar',
-        name: 'Prev Period',
-        marker : {
-            color: 'rgb(31, 119, 180)'
-        }
-    };
-
-    var nextPeriod = {
-        x: x2,
-        y: y2,
-        type: 'bar',
-        opacity: 0.6,
-        name: 'Next Period',
-        marker: {
-            color: 'rgb(255, 127, 14)'
-        }
-    };
-
-    var layout = {
-        barmode: "overlay",
-        title: "Time To First Byte",
-        xaxis: {
-            rangemode: 'tozero',
-            title: 'First byte',
-            autotick: false,
-            ticks: 'outside',
-            tick0: 0,
-            dtick: 200,
-            ticklen: 5,
-            tickwidth: 2,
-            tickcolor: '#000'
-        },
-        yaxis: {
-            title: 'Count'
-        }
-    };
-
-    var data = [prevPeriod, nextPeriod];
-    Plotly.newPlot('timeToFirstPaintPrevVsNextPeriod', data, layout);
 })();
 </script>

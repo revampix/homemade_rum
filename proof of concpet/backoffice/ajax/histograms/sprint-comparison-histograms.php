@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 
-require_once __DIR__ . '/../src/simulation/dataFaker.php';
+require_once __DIR__ . '/../../src/simulation/dataFaker.php';
 
 $dataFaker = new HomemadeRum_Simulation_DataFaker();
 
@@ -51,7 +51,7 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
 <div class="row">
     <div id="breadcrumb" class="col-xs-12">
         <ol class="breadcrumb pull-left">
-            <li><a href="#">Bounce Rate Vs. First Paint</a></li>
+            <li><a href="#">Release 92 Vs. Release 93</a></li>
         </ol>
         <div id="social" class="pull-right">
             <a target="_blank" href="https://github.com/revampix/homemade_rum"><i class="fa fa-github"></i></a>
@@ -62,7 +62,6 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         </div>
     </div>
 </div>
-<br />
 <div class="row">
     <div class="col-xs-12 col-sm-2"></div>
     <div class="col-xs-12 col-sm-8" style="text-align: center;">
@@ -110,9 +109,9 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
             <fieldset>
                 <legend>GA Metrics</legend>
                 <div class="form-group">
-                    <label><input type="checkbox" checked /> Bounce Rate</label>
+                    <label><input type="checkbox" disabled /> Bounce Rate</label>
                     <br />
-                    <label><input type="checkbox" checked /> Conversion Rate</label>
+                    <label><input type="checkbox" disabled /> Conversion Rate</label>
                     <br />
                 </div>
             </fieldset>
@@ -124,99 +123,7 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         } );
     </script>
 </div>
-<div id="timeToFirstPaintVsBounceRate"></div>
-<div id="timeToFirstPaintVsConversionRate"></div>
 <div id="timeToFirstPaintPrevVsNextPeriod"></div>
-<script>
-(function(){
-    var x1 = <?php echo json_encode(array_keys($firstPaintArr)); ?>;
-    var y1 = <?php echo json_encode(array_values($firstPaintArr)); ?>;
-
-    var prevPeriod = {
-        x: x1,
-        y: y1,
-        type: 'bar',
-        name: '9/15/2017 - 10/4/2017',
-        marker : {
-            color: 'rgb(31, 119, 180)'
-        }
-    };
-
-    var bounceRate = {
-        x: <?php echo json_encode(array_keys($bounceRateGroupRangeVsPercentage)); ?>,
-        y: <?php echo json_encode(array_values($bounceRateGroupRangeVsPercentage)); ?>,
-        type: 'scatter',
-        name: 'Bounce Rate',
-        marker: {
-            color: 'rgb(255, 127, 14)'
-        },
-        xaxis: 'x2',
-        yaxis: 'y2'
-    };
-
-    var conversionRate = {
-        x: <?php echo json_encode(array_keys($conversionRateGroupRangeVsPercentage)); ?>,
-        y: <?php echo json_encode(array_values($conversionRateGroupRangeVsPercentage)); ?>,
-        type: 'scatter',
-        name: 'Conversion Rate',
-        marker: {
-            color: 'rgb(255, 127, 14)'
-        },
-        xaxis: 'x2',
-        yaxis: 'y2'
-    };
-
-    var layout = {
-        barmode: "overlay",
-        title: "Time To First Paint",
-        xaxis: {
-            rangemode: 'tozero',
-            title: 'First Paint',
-            autotick: false,
-            ticks: 'outside',
-            tick0: 0,
-            dtick: 200,
-            ticklen: 5,
-            tickwidth: 2,
-            tickcolor: '#000',
-            range: [0, 8000]
-        },
-        yaxis: {
-            title: 'Count',
-            domain: [0, 0.65]
-        },
-        xaxis2: {
-            anchor: 'y2',
-            rangemode: 'tozero',
-            //title: 'Bounce Rate',
-            //autotick: false,
-            //ticks: 'outside',
-            tick0: 0,
-            dtick: 200,
-            ticklen: 5,
-            tickwidth: 2,
-            tickcolor: '#000',
-            range: [0, 8000],
-//            autorange: true,
-            showgrid: false,
-            zeroline: false,
-            showline: false,
-            autotick: true,
-            ticks: '',
-            showticklabels: false
-        },
-        yaxis2: {
-            domain: [0.7, 1]
-        }
-    };
-
-    var dataFirstPaintVsBounceRate = [prevPeriod, bounceRate];
-    var dataFirstPaintVsConversionRate = [prevPeriod, conversionRate];
-
-    Plotly.newPlot('timeToFirstPaintVsBounceRate', dataFirstPaintVsBounceRate, layout);
-    Plotly.newPlot('timeToFirstPaintVsConversionRate', dataFirstPaintVsConversionRate, layout);
-})();
-</script>
 <script>
 (function(){
     var x1 = <?php echo json_encode(array_keys($firstPaintArrPrevPeriod)); ?>;
@@ -229,7 +136,7 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         x: x1,
         y: y1,
         type: 'bar',
-        name: 'Prev Period',
+        name: 'Release 92',
         marker : {
             color: 'rgb(31, 119, 180)'
         }
@@ -240,7 +147,7 @@ $conversionRateGroupRangeVsPercentage = $dataFaker->generateConversionRate();
         y: y2,
         type: 'bar',
         opacity: 0.6,
-        name: 'Next Period',
+        name: 'Release 93',
         marker: {
             color: 'rgb(255, 127, 14)'
         }

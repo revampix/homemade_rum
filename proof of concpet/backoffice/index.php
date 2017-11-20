@@ -27,8 +27,35 @@
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
-					<div class="col-xs-8 col-sm-4"></div>
-					<div class="col-xs-4 col-sm-8 top-panel-right">
+					<div class="col-xs-8 col-sm-8">
+                        <ul class="nav navbar-nav pull-left panel-menu">
+                            <li>
+                                <a href="ajax/dashboard.php" class="ajax-link">
+                                    <i class="fa fa-dashboard"></i>
+                                    <span class="hidden-xs">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bar-chart-o"></i>
+                                    Histograms
+                                    <span class="caret">
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="ajax-link" href="ajax/histograms/bounce-rate-vs-ttfp-histogram.php">Bounce Rate Vs. First Paint</a></li>
+                                    <li><a class="ajax-link" href="ajax/histograms/conversion-rate-vs-ttfp-histogram.php">Conversion Rate Vs. First Paint</a></li>
+                                    <li><a class="ajax-link" href="ajax/histograms/sprint-comparison-histograms.php">Release 92 Vs. Release 93</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="ajax-link" href="ajax/waterfalls.php">
+                                    <i class="fa fa-align-left"></i>
+                                    Waterfalls
+                                </a>
+                            </li>
+                        </ul>
+					</div>
+					<div class="col-xs-4 col-sm-4 top-panel-right">
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li>
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
@@ -52,35 +79,8 @@
 <!--Start Container-->
 <div id="main" class="container-fluid">
 	<div class="row">
-		<div id="sidebar-left" class="col-xs-2 col-sm-2">
-			<ul class="nav main-menu">
-				<li>
-					<a href="ajax/dashboard.php" class="ajax-link">
-						<i class="fa fa-dashboard"></i>
-						<span class="hidden-xs">Dashboard</span>
-					</a>
-				</li>
-				<li class="dropdown">
-					<a class="ajax-link" href="ajax/histograms.php">
-						<i class="fa fa-bar-chart-o"></i>
-                        Histograms
-					</a>
-				</li>
-                <li class="dropdown">
-                    <a class="ajax-link" href="ajax/waterfalls.php">
-                        <i class="fa fa-align-left"></i>
-                        Waterfalls
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a class="ajax-link" href="ajax/ui_icons.html">
-                        Icons
-                    </a>
-                </li>
-			</ul>
-		</div>
 		<!--Start Content-->
-		<div id="content" class="col-xs-12 col-sm-10">
+		<div id="content" class="col-xs-12 col-sm-12">
 			<div class="preloader">
 				<img src="img/devoops_getdata.gif" class="devoops-getdata" alt="preloader"/>
 			</div>
