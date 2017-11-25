@@ -1,8 +1,6 @@
 .idea
 vendor
 front/vendor
-front/composer.lock
 front/composer.phar
-backend/composer.lock
 backend/composer.phar
 backend/vendor

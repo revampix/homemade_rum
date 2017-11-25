@@ -9,7 +9,7 @@
     "require": {
         "php": ">=5.5",
        	"envms/fluentpdo": "1.1.*",
-        "daylerees/sanitizer": "dev-master"
+        "daylerees/sanitizer": "1.0.*"
     }
 }
 
