@@ -6,8 +6,6 @@
  * Time: 11:07
  */
 
-use FluentPDO;
-
 /**
  * @note Generates database adapter
  *
@@ -32,7 +30,7 @@ class DatabaseFactory
             {
                 $pdo = new PDO($databaseData['dsn'], $databaseData['user'], $databaseData['password']);
 
-                return new FluentPDO($pdo);
+                return new \FluentPDO($pdo);
             }
 
         } catch(\Exception $e)
