@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+
+  backend:
+    container_name: homemade_rum_backoffice
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./../backend:/var/www/html
+
+  frontend:
+    container_name: homemade_rum_front
+    build:
+        context: ./front
+        dockerfile: Dockerfile
+    volumes:
+        - ./../front:/var/www/html
+
+  nginx:
+    container_name: homemade_rum_nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    links:
+      - frontend:front
+      - backend:back
+    ports:
+      - 80:80
+    volumes:
+      - ./../front:/var/www/html
+
