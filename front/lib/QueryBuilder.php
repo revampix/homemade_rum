@@ -175,4 +175,22 @@ class QueryBuilder
         return $mappedData;
 
     }
+
+    /**
+     * @param $gaClientId
+     * @param $guid
+     * @param $pageViewId
+     * @return array
+     */
+    public function generateGoogleAnalyticsReferenceQuery($gaClientId, $guid, $pageViewId)
+    {
+        $mappedData = array(
+            'guid' => $guid,
+            'analytics_client_id' => $gaClientId,
+            'page_view_id' => $pageViewId
+        );
+
+        return $mappedData;
+    }
+
 }

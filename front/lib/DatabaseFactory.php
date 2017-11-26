@@ -35,7 +35,7 @@ class DatabaseFactory
 
         } catch(\Exception $e)
         {
-            print 'Unable to read config data and generate adapter';
+            print $e->getMessage();
         }
     }
 }

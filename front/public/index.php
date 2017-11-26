@@ -42,4 +42,15 @@ if (!empty($beacon)) {
 
         }
     }
+
+    // Handling GA Client Id and storing it in DB.
+    $gaClientId = !empty($beacon['ga_clientid']) ? $beacon['ga_clientid'] : '';
+    if (empty($gaClientId)) {
+        $gaClientId = !empty($beacon['ga.clientid']) ? $beacon['ga.clientid'] : '';
+    }
+
+    if (!empty($gaClientId)) {
+        $gaReferenceData = $queryBuilder->generateGoogleAnalyticsReferenceQuery($beacon['ga_clientid'], $guid, $insertId);
+        $insertId = $dbAdapter->insertInto('google_analytics_reference')->values($gaReferenceData)->execute();
+    }
 }

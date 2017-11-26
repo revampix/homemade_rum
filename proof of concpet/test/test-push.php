@@ -1,9 +1,10 @@
 <?php
 // where are we posting to?
-$url = 'http://target-address.com/targe/push/write.php';
+$url = 'http://front.rum.loc/';
 
 
 $data = unserialize(file_get_contents('./beacon_1508696981.ser'));
+$data['ga.clientid'] = '1241074160.1507992899';
 
 // build the urlencoded data
 $postVars = http_build_query($data);
