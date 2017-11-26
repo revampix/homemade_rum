@@ -3,7 +3,7 @@
 $url = 'http://front.rum.loc/';
 
 
-$data = unserialize(file_get_contents('./beacon_1508696981.ser'));
+$data = unserialize(file_get_contents('./beacon_1511736623.ser'));
 $data['ga.clientid'] = '1241074160.1507992899';
 
 // build the urlencoded data

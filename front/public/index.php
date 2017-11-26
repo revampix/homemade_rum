@@ -30,7 +30,7 @@ if((!empty($guid)) && strpos($guid, '"') !== false) {
 if (!empty($beacon)) {
 
     $navigationTimingsData = $queryBuilder->generateNavigationTimingsData($navigationTimings, $guid);
-    $insertId = $dbAdapter->insertInto('navigation_timings')->values($navigationTimingsData)->execute();
+    $pageViewId = $dbAdapter->insertInto('navigation_timings')->values($navigationTimingsData)->execute();
 
 
     if (!empty($beacon['restiming'])) {
@@ -38,7 +38,7 @@ if (!empty($beacon)) {
 
         $resTimings = $resourceTimingDecompression->decompressResources(json_decode($beacon['restiming'], true));
         foreach ($resTimings as $timingData) {
-            $dbAdapter->insertInto('resource_timings', $queryBuilder->generateResourceTimingsQuery($timingData, $insertId))->execute();
+            $dbAdapter->insertInto('resource_timings', $queryBuilder->generateResourceTimingsQuery($timingData, $pageViewId))->execute();
 
         }
     }
@@ -50,7 +50,15 @@ if (!empty($beacon)) {
     }
 
     if (!empty($gaClientId)) {
-        $gaReferenceData = $queryBuilder->generateGoogleAnalyticsReferenceQuery($beacon['ga_clientid'], $guid, $insertId);
-        $insertId = $dbAdapter->insertInto('google_analytics_reference')->values($gaReferenceData)->execute();
+        $gaReferenceData = $queryBuilder->generateGoogleAnalyticsReferenceQuery($beacon['ga_clientid'], $guid, $pageViewId);
+        $dbAdapter->insertInto('google_analytics_reference')->values($gaReferenceData)->execute();
+    }
+
+    $mobileConnectionDecoder = new Beacon_MobileConnection();
+    $mobileConnectionData = $mobileConnectionDecoder->extractMobileConnectionAttributesFromBeacon($beacon);
+
+    if (!empty($mobileConnectionData)) {
+        $gaReferenceData = $queryBuilder->generateMobileConnectionQuery($mobileConnectionData, $pageViewId);
+        $dbAdapter->insertInto('mobile_connection')->values($gaReferenceData)->execute();
     }
 }

@@ -193,4 +193,23 @@ class QueryBuilder
         return $mappedData;
     }
 
+    /**
+     * @param array $mobileConnectionData
+     * @param $pageViewId
+     * @return array
+     */
+    public function generateMobileConnectionQuery($mobileConnectionData, $pageViewId)
+    {
+        $mappedData = array(
+            'page_view_id' => $pageViewId
+        );
+
+        $mappedData['type']         = !empty($mobileConnectionData['type']) ? $mobileConnectionData['type'] : '';
+        $mappedData['bandwidth']    = !empty($mobileConnectionData['bandwidth']) ? $mobileConnectionData['bandwidth'] : '';
+        $mappedData['metered']      = !empty($mobileConnectionData['metered']) ? $mobileConnectionData['metered'] : '';
+        $mappedData['downlink_max'] = !empty($mobileConnectionData['downlink_max']) ? $mobileConnectionData['downlink_max'] : '';
+
+        return $mappedData;
+    }
+
 }
