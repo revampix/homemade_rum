@@ -65,10 +65,9 @@ class QueryBuilder
 
     /**
      * @param array $navigationTimings
-     * @param $guid
      * @return array
      */
-    public function generateNavigationTimingsData(array $navigationTimings, $guid)
+    public function generateNavigationTimingsData(array $navigationTimings)
     {
         $iteration = 1;
 
@@ -104,7 +103,7 @@ class QueryBuilder
             'nt_spdy' => $navigationTimings['nt_spdy'],
             'nt_cinf' => $navigationTimings['nt_cinf'],
             'nt_first_paint' => $navigationTimings['nt_first_paint'],
-            'guid' => $guid,
+            'guid' => $navigationTimings['guid'],
         );
 
 

@@ -32,17 +32,9 @@ $navigationTimings = array_filter($beacon, 'is_scalar');
 $navigationTimings['nt_first_paint'] = str_replace('.', '', $navigationTimings['nt_first_paint']);
 
 
-
-$guid = isset($_COOKIE['GUID']) ? $_COOKIE['GUID'] : null;
-//$guid value has quoted value
-if((!empty($guid)) && strpos($guid, '"') !== false) {
-    $guid = trim($guid, '"');
-}
-
-
 if (!empty($beacon)) {
 
-    $navigationTimingsData = $queryBuilder->generateNavigationTimingsData($navigationTimings, $guid);
+    $navigationTimingsData = $queryBuilder->generateNavigationTimingsData($navigationTimings);
     $pageViewId = $dbAdapter->insertInto('navigation_timings')->values($navigationTimingsData)->execute();
 
 
